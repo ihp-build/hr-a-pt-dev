@@ -1,127 +1,36 @@
 <?if(!defined("B_PROLOG_INCLUDED") || B_PROLOG_INCLUDED!==true)die();?>
-<html>
-<head>
-<meta http-equiv="X-UA-Compatible" content="IE=edge" />
-<?$APPLICATION->ShowHead()?>
-<title><?$APPLICATION->ShowTitle()?></title>
-</head>
+<!DOCTYPE html>
+<html lang="" class="no-js">
+  <head>
 
-<body>
+    <?$APPLICATION->ShowHead()?>
 
-
-<?$APPLICATION->ShowPanel();?>
-
-<div id="container">
-
-<div id="header">
-	<div id="header_text">
-		<?$APPLICATION->IncludeFile(
-			$APPLICATION->GetTemplatePath("include_areas/company_name.php"),
-			Array(),
-			Array("MODE"=>"html")
-		);?>
-	</div>
-
-	<div id="company_logo"></div>
-
-	<div id="search">
-		&nbsp;Поиск на сайте
-		<?$APPLICATION->IncludeComponent("bitrix:search.form", "flat", Array(
-			"PAGE"	=>	"/search/"
-			)
-	);?>
-	</div>
-
-	<div id="login">
-		<?$APPLICATION->IncludeComponent("bitrix:system.auth.form", "auth", Array(
-			"REGISTER_URL"	=>	"/auth/",
-			"PROFILE_URL"	=>	"/personal/profile/"
-			)
-		);?>
-	</div>
-
-	<div id="menu">
-	<?$APPLICATION->IncludeComponent(
-	"bitrix:menu", 
-	"tabs", 
-	array(
-		"ROOT_MENU_TYPE" => "top",
-		"MAX_LEVEL" => "1",
-		"USE_EXT" => "N",
-		"MENU_CACHE_TYPE" => "A",
-		"MENU_CACHE_TIME" => "3600",
-		"MENU_CACHE_USE_GROUPS" => "N",
-		"MENU_CACHE_GET_VARS" => array(
-		),
-		"COMPONENT_TEMPLATE" => "tabs",
-		"CHILD_MENU_TYPE" => "left",
-		"DELAY" => "N",
-		"ALLOW_MULTI_SELECT" => "N"
-	),
-	false
-);?>
-	</div>
-</div>
-
-<table id="content" cellpadding="0" cellspacing="0">
-	<tr>
-		<td rowspan="4" width="9" class="table-border-color"><div style="width:9px"></div></td>
-		<td width="4"><img src="<?=SITE_TEMPLATE_PATH?>/images/left_top_corner.gif" width="4" height="4" border="0" alt="" /></td>
-		<td align="right"><img src="<?=SITE_TEMPLATE_PATH?>/images/right_top_corner.gif" width="7" height="5" border="0" alt="" /></td>
-		<td rowspan="4" width="7" class="table-border-color"><div style="width:7px"></div></td>
-	</tr>
-	<tr>
-		<td class="left-column"><?$APPLICATION->IncludeComponent("bitrix:menu", "left", Array(
-	"ROOT_MENU_TYPE"	=>	"left",
-	"MAX_LEVEL"	=>	"1",
-	"CHILD_MENU_TYPE"	=>	"left",
-	"USE_EXT"	=>	"Y",
-	"MENU_CACHE_TYPE" => "A",
-	"MENU_CACHE_TIME" => "3600",
-	"MENU_CACHE_USE_GROUPS" => "Y",
-	"MENU_CACHE_GET_VARS" => array(
-		0 => "SECTION_ID",
-		1 => "page",
-	),
-	)
-);?>
-
-	<!-- SOCIALNETWORK -->
-
-
-<?$APPLICATION->IncludeComponent(
-				"bitrix:main.include",
-				"",
-				Array(
-					"AREA_FILE_SHOW" => "sect", 
-					"AREA_FILE_SUFFIX" => "inc", 
-					"AREA_FILE_RECURSIVE" => "N", 
-					"EDIT_MODE" => "html", 
-					"EDIT_TEMPLATE" => "sect_inc.php" 
-				)
-			);?><?$APPLICATION->IncludeComponent(
-				"bitrix:main.include",
-				"",
-				Array(
-					"AREA_FILE_SHOW" => "page", 
-					"AREA_FILE_SUFFIX" => "inc", 
-					"AREA_FILE_RECURSIVE" => "N", 
-					"EDIT_MODE" => "html", 
-					"EDIT_TEMPLATE" => "page_inc.php" 
-					)
-			);?>
-			</td>
-		<td class="main-column">
-
-			<div id="printer"><noindex><a href="<?=htmlspecialchars($APPLICATION->GetCurUri("print=Y"));?>" title="Версия для печати" rel="nofollow">версия<br />для печати</a></noindex></div>
-
-			<div id="navigation"><?$APPLICATION->IncludeComponent(
-				"bitrix:breadcrumb",
-				".default",
-				Array(
-					"START_FROM" => "0", 
-					"PATH" => "", 
-					"SITE_ID" => "" 
-				)
-			);?></div>
-			<h1 id="pagetitle"><?$APPLICATION->ShowTitle(false)?></h1>
+    <meta charset="utf-8">
+    <meta name="description" content="">
+    <title>Khrenov&amp;Partners</title>
+    <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/styles/main.css">
+  </head>
+  <body class="index">
+    <div class="header">
+      <div class="content">
+        <div class="logo"><a href="/"></a></div>
+        <div class="menu">
+          <ul>
+            <li class="active"><a href="/pages/about.php">About us</a></li>
+            <li><a href="/pages/team.php">Our team</a></li>
+            <li><a href="/pages/services.php">Services</a></li>
+            <li><a href="/pages/clients.php">Clients</a></li>
+            <li><a href="/pages/recognition.php">Recognition</a></li>
+            <li><a href="/pages/press.php">Press-club</a></li>
+            <li><a href="/pages/career.php">Career</a></li>
+            <li><a href="/pages/contacts.php">Contacts</a></li>
+          </ul>
+        </div>
+        <div class="lang">
+          <ul>
+            <li><a href="#">Ru</a></li>
+            <li><a href="#">En</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
