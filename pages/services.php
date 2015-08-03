@@ -7,18 +7,16 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
     <div class="block">
       <div class="content">
         <h1>Services</h1>
-        <div class="menu"> 
-          <ul>
-            <li><a href="#1" class="service-item rotated img1"><span class="img"><i></i></span>судебные споры и третейское разбирательство</a></li>
-            <li><a href="#2" class="service-item rotated img2"><span class="img"><i></i></span>Корпоративное право, сделки, M&A</a></li>
-            <li><a href="#3" class="service-item rotated img3"><span class="img"><i></i></span>Банкротство и&nbsp;реструктуризация</a></li>
-            <li><a href="#1" class="service-item rotated img4"><span class="img"><i></i></span>Международный арбитраж</a></li>
-            <li><a href="#1" class="service-item rotated img5"><span class="img"><i></i></span>Налоговое право</a></li>
-            <li><a href="#1" class="service-item rotated img6"><span class="img"><i></i></span>Энергетика</a></li>
-            <li><a href="#1" class="service-item rotated img7"><span class="img"><i></i></span>Недвижимость и&nbsp;строительство</a></li>
-            <li><a href="#1" class="service-item rotated img8"><span class="img"><i></i></span>Государственно-частное партнерство</a></li>
-            <li class="center"><a href="#1" class="service-item rotated img9"><span class="img"><i></i></span>Природоохрана и&nbsp;недропользование</a></li>
-          </ul>
+        <div class="menu slides">
+          <div class="item"><a href="#1" class="service-item rotated img1"><span class="img"><i></i></span>судебные споры и третейское разбирательство</a></div>
+          <div class="item"><a href="#2" class="service-item rotated img2"><span class="img"><i></i></span>Корпоративное право, сделки, M&A</a></div>
+          <div class="item"><a href="#3" class="service-item rotated img3"><span class="img"><i></i></span>Банкротство и&nbsp;реструктуризация</a></div>
+          <div class="item"><a href="#1" class="service-item rotated img4"><span class="img"><i></i></span>Международный арбитраж</a></div>
+          <div class="item"><a href="#1" class="service-item rotated img5"><span class="img"><i></i></span>Налоговое право</a></div>
+          <div class="item"><a href="#1" class="service-item rotated img6"><span class="img"><i></i></span>Энергетика</a></div>
+          <div class="item"><a href="#1" class="service-item rotated img7"><span class="img"><i></i></span>Недвижимость и&nbsp;строительство</a></div>
+          <div class="item"><a href="#1" class="service-item rotated img8"><span class="img"><i></i></span>Государственно-частное партнерство</a></div>
+          <div class="item center"><a href="#1" class="service-item rotated img9"><span class="img"><i></i></span>Природоохрана и&nbsp;недропользование</a></div>
         </div>
         <div class="page"> 
           <h4>Litigation and Dispute Resolution</h4>
@@ -34,6 +32,7 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
           <p>The firm’s experience of protecting clients’ interests is not limited to Russian courts. K&P’s litigators successfully represent clients before international arbitration courts (London Court of International Arbitration, Stockholm Chamber of Commerce, International Commercial Arbitration Court at the Chamber of Commerce and Industry of the Russian Federation etc.) </p>
         </div>
       </div>
+      <div class="scroll-top">Top</div>
     </div>
 
     <script src="<?=SITE_TEMPLATE_PATH?>/scripts/main.concat.js?1">     </script>
@@ -43,11 +42,128 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
         .each(function() {
           var i = $(this);
           if (location.pathname.indexOf(i.find('a').attr('href')) > -1) {
-            i.addClass('active')
+            i.addClass('active');
             return false;
           }
-        })
+        });
       
+      $('.header .menu').show();
+      $('.header .burger').click(function() {
+        $('.header .menu').toggleClass('opened');
+      });
+      
+      $('.scroll-top').click(function(){
+        var body = $('html, body');
+        body.stop().animate({ scrollTop: 0 }, { duration: 400 });
+      });
+      
+      
+      $('form.feedback').each(function() {
+        var form = $(this);
+        var inputs = form.find('input, textarea');
+      
+        function clearErrors(inputEl) {
+          var input = $(inputEl);
+          input.removeClass('invalid');
+        } 
+      
+        function validate(inputEl) {
+          var input = $(inputEl);
+          var isInvalid = false;
+          var message = [];
+          if (input.is('[required]') && !$.trim(input.val()).length) {
+            isInvalid = true;
+            message.push('заполните поле');
+          }
+      
+          input.toggleClass('invalid', isInvalid);
+          input.next('.error-message').toggle(!!message.length).html(message.join('<br>'));
+        };
+      
+        var validatedInputs = inputs.filter('*[required]');
+        var liveValidation = false;
+      
+        form.submit(function (e) {
+          e.preventDefault();
+          
+          validatedInputs.each(function () {
+            validate(this);
+          });
+      
+          var hasInvalidInputs = inputs.filter('.invalid').length;
+          if (hasInvalidInputs) {
+            if (!liveValidation) {
+              liveValidation = true;
+              validatedInputs.on('keyup click', function (e) {
+                validate(e.target);
+              });  
+            }
+            
+            return;
+          }
+      
+          console.log('ajax');
+          // form.serialize()
+          // ajax(form_url, data, succes)
+        });
+      });
+      
+    </script>
+    <script>
+      $(function() {
+      
+        var menu = $('.block .content .menu');
+        var slider;
+      
+        $(document).on('enterState', function(e, state) {
+          if (slider) {
+            slider.destroySlider();
+            slider = null;
+          }
+          
+          var items = menu.find('.item')
+          if (items.parent('.slide').length) {
+            items.unwrap();
+          }
+      
+          if (state.id == 'desktop') return;
+      
+          var itemsPerSlide = {
+            'phone': 2,
+            'tablet': 4,
+          };
+      
+          wrapSlices(items, itemsPerSlide[state.id], '<div class="slide"></div>');
+          
+          slider = menu.bxSlider({
+            pager: false,
+            nextText: '',
+            prevText: ''
+          });
+        });
+      
+      });
+    </script>
+    <script>
+      ViewStates.add({
+        id: 'desktop',
+        query: '(min-width: 1001px)'
+      });
+      
+      ViewStates.add({
+        id: 'tablet',
+        query: '(min-width: 768px) and (max-width: 1000px)'
+      });
+      
+      ViewStates.add({
+        id: 'phone',
+        query: '(max-width: 767px)'
+      });
+      
+      
+      $(function() {
+        ViewStates.init();
+      });
     </script>
 
 <?require($_SERVER["DOCUMENT_ROOT"]."/bitrix/footer.php");?>

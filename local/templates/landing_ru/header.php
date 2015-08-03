@@ -3,22 +3,27 @@
 <html lang="" class="no-js">
   <head>
 
-    <?$APPLICATION->ShowHead()?>
+  <?$APPLICATION->ShowHead()?>
 
     <meta charset="utf-8">
     <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Khrenov&amp;Partners</title>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/styles/main.css">
+
   </head>
 
   <?php
     $body_class = "index";
-    if ($_SERVER['REQUEST_URI'] !== '/')
+
+    preg_match("/(.*)\\/(.*)/", $_SERVER['REQUEST_URI'], $split);
+
+    if ( !empty($split[1]) )
     {
-      $body_class = trim($_SERVER['REQUEST_URI'], '/');
+      $body_class = trim($split[1], '/');
     }
   ?>
 
@@ -31,7 +36,7 @@
         <div class="logo"><a href="/"></a></div>
         <div class="menu">
           <ul>
-            <li class="active"><a href="/about/">About us</a></li>
+            <li><a href="/about/">About us</a></li>
             <li><a href="/team/">Our team</a></li>
             <li><a href="/services/">Services</a></li>
             <li><a href="/clients/">Clients</a></li>
@@ -47,5 +52,6 @@
             <li><a href="#">En</a></li>
           </ul>
         </div>
+        <div class="burger"></div>
       </div>
     </div>
