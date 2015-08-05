@@ -25,6 +25,11 @@
     {
       $body_class = trim($split[1], '/');
     }
+
+    $lang_id_menu = "";
+    if ( LANGUAGE_ID !== "ru" )
+      $lang_id_menu = "/" . LANGUAGE_ID;
+
   ?>
 
   <body class="<?=$body_class;?>">
@@ -36,20 +41,20 @@
         <div class="logo"><a href="/"></a></div>
         <div class="menu">
           <ul>
-            <li><a href="/about/">About us</a></li>
-            <li><a href="/team/">Our team</a></li>
-            <li><a href="/services/">Services</a></li>
-            <li><a href="/clients/">Clients</a></li>
-            <li><a href="/recognition/">Recognition</a></li>
-            <li><a href="/press/">Press-club</a></li>
-            <li><a href="/career/">Career</a></li>
-            <li><a href="/contacts/">Contacts</a></li>
+            <li><a href="<?=$lang_id_menu?>/about/">About us</a></li>
+            <li><a href="<?=$lang_id_menu?>/team/">Our team</a></li>
+            <li><a href="<?=$lang_id_menu?>/services/">Services</a></li>
+            <li><a href="<?=$lang_id_menu?>/clients/">Clients</a></li>
+            <li><a href="<?=$lang_id_menu?>/recognition/">Recognition</a></li>
+            <li><a href="<?=$lang_id_menu?>/press/">Press-club</a></li>
+            <li><a href="<?=$lang_id_menu?>/career/">Career</a></li>
+            <li><a href="<?=$lang_id_menu?>/contacts/">Contacts</a></li>
           </ul>
         </div>
         <div class="lang">
           <ul>
-            <li><a href="#">Ru</a></li>
-            <li><a href="#">En</a></li>
+            <li><a href="/">Ru</a></li>
+            <li><a href="/en/">En</a></li>
           </ul>
         </div>
         <div class="burger"></div>

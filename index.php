@@ -26,7 +26,7 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
           <br>
           to domestic and international clients.
           
-        </p><a href="about.html" class="tr-button big">Read more</a>
+        </p><a href="/about/" class="tr-button big">Read more</a>
       </div>
     </div>
     <div class="team block">
@@ -37,7 +37,7 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
           <br>
           and what motivates them.
           
-        </p><a href="team.html" class="all-team tr-button">All team</a>
+        </p><a href="/team/" class="all-team tr-button">All team</a>
         <div class="partners"><a href="#" class="item left rotated with-line">
             <div class="img"><i style="background-image: url(<?=SITE_TEMPLATE_PATH?>/images/team/1.jpg);"></i></div>Александр Хренов
             <div class="status">партнер</div></a><a href="#" class="item right rotated with-line">
@@ -163,7 +163,7 @@ $APPLICATION->SetPageProperty("NOT_SHOW_NAV_CHAIN", "Y");
           Click through our Employee to learn more about our team
           <br>
           and what motivates them.
-        </p><a href="press.html" class="all-press tr-button">All press</a>
+        </p><a href="/press/" class="all-press tr-button">All press</a>
         <div class="row first">
           <div class="item item1 rotated">
             <div class="img"><i>

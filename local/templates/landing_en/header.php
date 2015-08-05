@@ -3,34 +3,60 @@
 <html lang="" class="no-js">
   <head>
 
-    <?$APPLICATION->ShowHead()?>
+  <?$APPLICATION->ShowHead()?>
 
     <meta charset="utf-8">
     <meta name="description" content="">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Khrenov&amp;Partners</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+
     <link rel="stylesheet" href="<?=SITE_TEMPLATE_PATH?>/styles/main.css">
+
   </head>
-  <body class="index">
+
+  <?php
+    $body_class = "index";
+
+    preg_match("/(.*)\\/(.*)/", $_SERVER['REQUEST_URI'], $split);
+
+    if ( $split[1] !== "/en" )
+    {
+      $body_class = trim($split[1], '/en/');
+    }
+
+    $lang_id_menu = "";
+    if ( LANGUAGE_ID !== "ru" )
+      $lang_id_menu = "/" . LANGUAGE_ID;
+
+  ?>
+
+  <body class="<?=$body_class;?>">
+
+    <?$APPLICATION->ShowPanel();?>
+
     <div class="header">
       <div class="content">
-        <div class="logo"><a href="/"></a></div>
+        <div class="logo"><a href="/en/"></a></div>
         <div class="menu">
           <ul>
-            <li class="active"><a href="/pages/about.php">About us</a></li>
-            <li><a href="/pages/team.php">Our team</a></li>
-            <li><a href="/pages/services.php">Services</a></li>
-            <li><a href="/pages/clients.php">Clients</a></li>
-            <li><a href="/pages/recognition.php">Recognition</a></li>
-            <li><a href="/pages/press.php">Press-club</a></li>
-            <li><a href="/pages/career.php">Career</a></li>
-            <li><a href="/pages/contacts.php">Contacts</a></li>
+            <li><a href="<?=$lang_id_menu?>/about/">About us</a></li>
+            <li><a href="<?=$lang_id_menu?>/team/">Our team</a></li>
+            <li><a href="<?=$lang_id_menu?>/services/">Services</a></li>
+            <li><a href="<?=$lang_id_menu?>/clients/">Clients</a></li>
+            <li><a href="<?=$lang_id_menu?>/recognition/">Recognition</a></li>
+            <li><a href="<?=$lang_id_menu?>/press/">Press-club</a></li>
+            <li><a href="<?=$lang_id_menu?>/career/">Career</a></li>
+            <li><a href="<?=$lang_id_menu?>/contacts/">Contacts</a></li>
           </ul>
         </div>
         <div class="lang">
           <ul>
-            <li><a href="#">Ru</a></li>
-            <li><a href="#">En</a></li>
+            <li><a href="/">Ru</a></li>
+            <li><a href="/en/">En</a></li>
           </ul>
         </div>
+        <div class="burger"></div>
       </div>
     </div>
